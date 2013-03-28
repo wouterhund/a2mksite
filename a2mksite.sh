@@ -33,7 +33,7 @@ APACHE_CONF="$APACHE_CONF_DIR/$DOMAIN"
 LOGROTATE_CONF="$LOGROTATE_SITES_DIR/$DOMAIN.conf"
 
 # This is where the site itself will be created
-SITES_DIR="/var/www/sites"
+SITES_DIR="/home/$SUDO_USER/vhosts"
 SITE_DIR="$SITES_DIR/$DOMAIN"
 PUBLIC_DIR="$SITE_DIR/public"
 LOG_DIR="$SITE_DIR/log"
@@ -238,4 +238,6 @@ echo "Enabling Site..."
 /usr/sbin/a2ensite $DOMAIN
 echo "Restarting Apache..."
 /usr/sbin/apache2ctl graceful
+echo "Adding hosts"
+echo "127.0.0.1 $DOMAIN" >> /etc/hosts
 echo "ALL DONE!"
