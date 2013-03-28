@@ -239,5 +239,7 @@ echo "Enabling Site..."
 echo "Restarting Apache..."
 /usr/sbin/apache2ctl graceful
 echo "Adding hosts"
+REGEX_DOMAIN="$(echo "$DOMAIN" | sed 's/[^-A-Za-z0-9_]/\\&/g')"
+sed -i.bak "/127.0.0.1 $REGEX_DOMAIN/d" /etc/hosts
 echo "127.0.0.1 $DOMAIN" >> /etc/hosts
 echo "ALL DONE!"
